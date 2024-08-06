@@ -1,18 +1,23 @@
-﻿using HaruhiChokuretsuLib.Archive.Event;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using HaruhiChokuretsuLib.Archive.Event;
+using ReactiveUI;
+using ReactiveUI.Fody.Helpers;
 
 namespace SerialLoops.Lib.Items
 {
-    public class ItemDescription
+    public partial class ItemDescription : ReactiveObject
     {
-        public string Name { get; protected set; }
+        [Reactive]
+        public string Name { get; set; }
+        [Reactive]
         public bool CanRename { get; set; }
-        public string DisplayName { get; protected set; }
-        public string DisplayNameWithStatus => UnsavedChanges ? $"{DisplayName} *" : DisplayName;
+        [Reactive]
+        public string DisplayName { get; set; }
         public ItemType Type { get; private set; }
-        public bool UnsavedChanges { get; set; } = false;
+        [Reactive]
+        public bool UnsavedChanges { get; set; }
 
         public ItemDescription(string name, ItemType type, string displayName)
         {
@@ -192,6 +197,5 @@ namespace SerialLoops.Lib.Items
                     return references;
             }
         }
-
     }
 }

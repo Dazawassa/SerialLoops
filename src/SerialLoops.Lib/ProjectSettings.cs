@@ -1,10 +1,10 @@
-﻿using HaroohieClub.NitroPacker.Core;
+﻿using System;
+using System.Linq;
+using HaroohieClub.NitroPacker.Core;
 using HaroohieClub.NitroPacker.Nitro.Gx;
 using HaruhiChokuretsuLib.Archive.Graphics;
 using HaruhiChokuretsuLib.Util;
 using SkiaSharp;
-using System;
-using System.Linq;
 using static HaroohieClub.NitroPacker.Nitro.Card.Rom.RomBanner;
 
 namespace SerialLoops.Lib
@@ -14,7 +14,7 @@ namespace SerialLoops.Lib
         public NdsProjectFile File { get; } = file;
         private BannerV1 Banner => File.RomInfo.Banner.Banner;
         private readonly ILogger _log = log;
-        
+
         public string Name {
             get => Banner.GameName[0];
             set
@@ -28,7 +28,7 @@ namespace SerialLoops.Lib
         }
 
         public SKBitmap Icon
-        { 
+        {
             get
             {
                 Rgba8Bitmap bitmap = Banner.GetIcon();
